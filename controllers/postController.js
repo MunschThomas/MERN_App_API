@@ -30,7 +30,6 @@ export const createPost = async (req, res) => {
 export const getFeedPosts = async (req, res) => {
   try {
     const post = await Post.find()
-
     res.status(200).json(post)
   } catch (err) {
     res.status(400).json({ message: err.message })
@@ -65,7 +64,6 @@ export const likePost = async (req, res) => {
       { likes: post.likes },
       { new: true }
     )
-
     res.status(200).json(updatedPost)
   } catch (err) {
     res.status(400).json({ message: err.message })

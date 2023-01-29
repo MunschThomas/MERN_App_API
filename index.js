@@ -10,6 +10,9 @@ import { fileURLToPath } from "url"
 import authRoutes from "./routes/authRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 import postRoutes from "./routes/postRoutes.js"
+import User from "./models/User.js"
+import Post from "./models/Post.js"
+import { users, posts } from "./data/index.js"
 
 /* CONFIG */
 const __filename = fileURLToPath(import.meta.url)
@@ -38,8 +41,10 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on port: ${PORT}`)
-    })
+    app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
+
+    /* ADD DATA ONE TIME */
+    // User.insertMany(users)
+    // Post.insertMany(posts)
   })
   .catch((err) => console.log(err))

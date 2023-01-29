@@ -12,7 +12,6 @@ export const verifyToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) return res.status(403).json({ message: err })
     req.user = decoded
-    console.log("decoded", decoded)
     next()
   })
 }

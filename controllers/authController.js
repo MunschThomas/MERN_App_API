@@ -51,7 +51,6 @@ export const login = async (req, res) => {
     if (!user) return res.status(404).json({ error: "User not found" })
 
     const isMatch = await argon2.verify(user.password, password)
-    console.log("isMatch", isMatch)
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" })
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
